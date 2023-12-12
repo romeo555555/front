@@ -100,7 +100,7 @@ code {
   /* flex-direction: row; */
   height: 45vmin;
   /* position: absolute; */
-  clear: both;
+  /* clear: both; */
 }
 .Healbar{
   float: left;
@@ -128,7 +128,7 @@ code {
   /* top: 3%; */
 }
 .Space{
-  height: 20vmin;
+  height: 10vmin;
 }
 .ActionMenu{
   display: flex;
@@ -150,6 +150,9 @@ code {
     align-items: center;
     justify-content: center;
     button{
+      border: 1px solid white;
+      background-color: black;
+      color: white;
       height: 50%;
       width: 50%;
       /* font-size: 1em; */
