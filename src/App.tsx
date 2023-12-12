@@ -67,15 +67,30 @@ function ActionMenu({ text }: { text: string }) {
     </>
   )
 }
-function HealBar({ name, healty }: { name: string; healty: string }) {
+function HealBar({
+  name,
+  healty,
+  maxHealty,
+}: {
+  name: string
+  healty: string
+  maxHealty: string
+}) {
   return (
     <>
       <div className="Healbar">
         <p>{name} Lv7 </p>
         <div className="FullHealty">
-          <div className="CurrentHealty"></div>
+          <div
+            className="CurrentHealty"
+            style={{
+              width:
+                ((100 / parseInt(maxHealty)) * parseInt(healty)).toString() +
+                "%",
+            }}
+          ></div>
         </div>
-        <p>{healty}</p>
+        <p>{healty + "/" + maxHealty}</p>
       </div>
     </>
   )
@@ -86,7 +101,7 @@ function App() {
     <div className="App">
       <div className="App-header">
         <div className="Player">
-          <HealBar name="Fiend" healty="12/35" />
+          <HealBar name="Fiend" healty="12" maxHealty="35" />
           <div className="Playerfield"> </div>
           <img src={boy2} className="App-logo Avatar" alt="logo" />
         </div>
@@ -94,7 +109,7 @@ function App() {
         <div className="Player">
           <div className="Playerfield"> </div>
           <img src={boy1} className="App-logo Avatar" alt="logo" />
-          <HealBar name="Martyr" healty="23/27" />
+          <HealBar name="Martyr" healty="23" maxHealty="27" />
         </div>
         <ActionMenu text="What will Martyr do?" />
       </div>

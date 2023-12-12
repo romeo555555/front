@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
@@ -116,10 +120,15 @@ code {
   /* height: 20vmin; */
   width: 40vmin;
   /* vertical-align: middle; */
+  position: relative;
   .FullHealty{
-    position: absolute;
+    /* position: absolute; */
+    /* left: 0px; */
+    /* top: 0px; */
+    position: relative;
     left: 0px;
     top: 0px;
+    z-index: 1;
     border: 1px solid white;
     border-radius: 10px;
     margin: 2% 10% 1% 10%;
@@ -128,17 +137,18 @@ code {
     height: 1vmin;
   }
   .CurrentHealty{
-    position: absolute;
+    position: relative;
     left: 0px;
     top: 0px;
+    bottom 0px;
     z-index: -1;
     background-color: red;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     border-radius: 10px;
-    margin: 2% 10% 1% 10%;
-    text-align: center;
+    margin: 0%;
+    /* text-align: center; */
     width: 80%;
-    height: 1vmin;
+    height: 100%;
   }
 }
 .Avatar {
