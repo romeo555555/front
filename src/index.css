@@ -117,7 +117,7 @@ code {
   width: 40vmin;
   /* vertical-align: middle; */
 }
-.Boy {
+.Avatar {
   /* display: inline; */
   float: left;
   /* margin: 0vmin 1vmin; */
@@ -130,8 +130,40 @@ code {
 .Space{
   height: 20vmin;
 }
-.Actionmenu{
-  /* display: flex; */
+.ActionMenu{
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  height: 40vmin;
+  width: 100vmin;
+  .ActionMenu-Main{
+    color: white;
+    /* width: 50%;   */
+    width: 50vmin;  
+  }
+  .ActionMenu-Button{
+    height: 100%;
+    width: 50vmin;  
+    /* position: absolute; */
+    display: flex;
+    flex-wrap: wrap;  
+    align-items: center;
+    justify-content: center;
+    button{
+      height: 50%;
+      width: 50%;
+      /* font-size: 1em; */
+      /* width: 20vmin; */
+      /* height: 20vmin; */
+      /* bottom: 0px; */
+    }
+    button:hover{
+        color:red;
+        background-color: black;
+      }
+  }
+}
+.CtionMenu{
   border: 1px solid white;
   height: 40vmin;
   width: 100vmin;

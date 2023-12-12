@@ -46,17 +46,17 @@ function ActionMenu({ text }: { text: string }) {
   }
   return (
     <>
-      <div className="Actionmenu">
-        <p>{text}</p>
+      <div className="ActionMenu">
+        <p className="ActionMenu-Main">{text}</p>
         {active ? (
-          <div className="Button">
+          <div className="ActionMenu-Button">
             <button onClick={action}> FIGHT </button>
             <button> BOYS </button>
             <button> BAG </button>
             <button> RUN </button>
           </div>
         ) : (
-          <div className="Button">
+          <div className="ActionMenu-Button">
             <button> FIST </button>
             <button> GUN </button>
             <button> SWORD </button>
@@ -85,12 +85,12 @@ function App() {
         <div className="Player">
           <HealBar name="Fiend" healty="12/35" />
           <div className="Playerfield"> </div>
-          <img src={boy2} className="App-logo Boy" alt="logo" />
+          <img src={boy2} className="App-logo Avatar" alt="logo" />
         </div>
         <div className="Space"> </div>
         <div className="Player">
           <div className="Playerfield"> </div>
-          <img src={boy1} className="App-logo Boy" alt="logo" />
+          <img src={boy1} className="App-logo Avatar" alt="logo" />
           <HealBar name="Martyr" healty="23/27" />
         </div>
         <ActionMenu text="What will Martyr do?" />
