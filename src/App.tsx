@@ -72,6 +72,9 @@ function HealBar({ name, healty }: { name: string; healty: string }) {
     <>
       <div className="Healbar">
         <p>{name} Lv7 </p>
+        <div className="FullHealty">
+          <div className="CurrentHealty"></div>
+        </div>
         <p>{healty}</p>
       </div>
     </>

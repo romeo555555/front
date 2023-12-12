@@ -116,6 +116,30 @@ code {
   /* height: 20vmin; */
   width: 40vmin;
   /* vertical-align: middle; */
+  .FullHealty{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 2% 10% 1% 10%;
+    text-align: center;
+    width: 80%;
+    height: 1vmin;
+  }
+  .CurrentHealty{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    background-color: red;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 2% 10% 1% 10%;
+    text-align: center;
+    width: 80%;
+    height: 1vmin;
+  }
 }
 .Avatar {
   /* display: inline; */
@@ -128,7 +152,7 @@ code {
   /* top: 3%; */
 }
 .Space{
-  height: 10vmin;
+  height: 7vmin;
 }
 .ActionMenu{
   display: flex;
@@ -161,9 +185,9 @@ code {
       /* height: 20vmin; */
       /* bottom: 0px; */
   }
-  .ActionMenu-Button > button:hover{
-        color:red;
-        background-color: black;
+  .ActionMenu-Button > button:active{
+        color:white;
+        background-color: red;
   }
 }
 .CtionMenu{
