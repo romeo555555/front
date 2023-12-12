@@ -149,7 +149,8 @@ code {
     flex-wrap: wrap;  
     align-items: center;
     justify-content: center;
-    button{
+  }
+  .ActionMenu-Button > button{
       border: 1px solid white;
       background-color: black;
       color: white;
@@ -159,11 +160,10 @@ code {
       /* width: 20vmin; */
       /* height: 20vmin; */
       /* bottom: 0px; */
-    }
-    button:hover{
+  }
+  .ActionMenu-Button > button:hover{
         color:red;
         background-color: black;
-      }
   }
 }
 .CtionMenu{
