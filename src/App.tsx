@@ -137,7 +137,7 @@ function ThisPlayerComponent() {
         <PlayerHealBar
           name={player.name}
           maxHealty={player.maxHealty}
-          currentHealty={player.currentHealty}
+          currentHealty={currentHealty}
         />
       </div>
     </>
