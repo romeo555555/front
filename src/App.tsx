@@ -20,6 +20,7 @@ class Player {
     this.name = name
     this.maxHealty = maxHealty
     this.currentHealty = maxHealty
+    this.imagePath = imagePath
   }
 }
 
@@ -78,6 +79,7 @@ function ActionMenu({ text }: { text: string }) {
 }
 function PlayerComponent({ isOpp = true }) {
   const player = useAppSelector(isOpp ? selectOppPlayer : selectThisPlayer)
+  const currentHealty = useAppSelector((state: RootState) => state.players.oppPlayer.currentHealty)
   return (
     <>
       <div className="Player">
@@ -88,12 +90,11 @@ function PlayerComponent({ isOpp = true }) {
               className="CurrentHealty"
               style={{
                 width:
-                  ((100 / player.maxHealty) * player.currentHealty).toString() +
-                  "%",
+                  ((100 / player.maxHealty) * currentHealty).toString() + "%",
               }}
             ></div>
           </div>
-          <p>{player.currentHealty + "/" + player.maxHealty}</p>
+          <p>{currentHealty + "/" + player.maxHealty}</p>
         </div>
         <div className="Playerfield"> </div>
         <img src={player.imagePath} className="App-logo Avatar" alt="logo" />
