@@ -67,7 +67,7 @@ function ActionMenu({ text }: { text: string }) {
           </div>
         ) : (
           <div className="ActionMenu-Button">
-            <button onClick={() => dispatch(doDamage(3))}> FIST </button>
+            <button onClick={() => dispatch(doDamage(10))}> FIST </button>
             <button onClick={() => dispatch(doDamage(3))}> FIST </button>
             <button onClick={() => dispatch(doDamage(5))}> GUN </button>
             <button onClick={action}> BACK </button>
