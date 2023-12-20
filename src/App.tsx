@@ -26,20 +26,6 @@ function new_player(name: string, maxHealty: number, imagePath: string) {
   }
 }
 
-class Player {
-  name: string = "Empety"
-  maxHealty: number = 0
-  currentHealty: number = 0
-  imagePath: string = ""
-
-  constructor(name: string, maxHealty: number, imagePath: string) {
-    this.name = name
-    this.maxHealty = maxHealty
-    this.currentHealty = maxHealty
-    this.imagePath = imagePath
-  }
-}
-
 const initialState = {
   oppPlayer: new_player("Fiend", 35, boy2),
   thisPlayer: new_player("Martyr", 27, boy1),
@@ -152,7 +138,7 @@ function ThisPlayerComponent() {
         <PlayerHealBar
           name={player.name}
           maxHealty={player.maxHealty}
-          currentHealty={currentHealty}
+          currentHealty={player.currentHealty}
         />
       </div>
     </>
