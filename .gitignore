@@ -29,4 +29,4 @@ build
 # Miscellaneous
 *.local
 
-# .env
+.env
