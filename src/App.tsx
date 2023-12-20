@@ -36,9 +36,15 @@ export const playersSlice = createSlice({
   initialState,
   reducers: {
     doDamage: (state, action: PayloadAction<number>) => {
+      if (state.oppPlayer.currentHealty < action.payload) {
+        state.oppPlayer.currentHealty = 0
+      }
       state.oppPlayer.currentHealty -= action.payload
     },
     takeDamage: (state, action: PayloadAction<number>) => {
+      if (state.oppPlayer.currentHealty < action.payload) {
+        state.oppPlayer.currentHealty = 0
+      }
       state.thisPlayer.currentHealty -= action.payload
     },
   },
@@ -69,8 +75,8 @@ function ActionMenu({ text }: { text: string }) {
           </div>
         ) : (
           <div className="ActionMenu-Button">
-            <button onClick={() => dispatch(doDamage(10))}> FIST </button>
-            <button onClick={() => dispatch(doDamage(3))}> GUN </button>
+            <button onClick={() => dispatch(doDamage(3))}> FIST </button>
+            <button onClick={() => dispatch(doDamage(5))}> GUN </button>
             <button onClick={() => dispatch(takeDamage(5))}> SELFHARM </button>
             <button onClick={action}> BACK </button>
           </div>
