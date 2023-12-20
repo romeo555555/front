@@ -5,41 +5,50 @@ import { Counter } from "./features/counter/Counter"
 
 import WebApp from "@twa-dev/sdk"
 import { useState } from "react"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { Provider } from "react-redux"
+import { RootState, store } from "./app/store"
+import { useAppDispatch, useAppSelector } from "./app/hooks"
 
-const data = {
-  dd: 7,
+class Player {
+  name: string = "Empety"
+  maxHealty: number = 0
+  currentHealty: number = 0
+  imagePath: string = ""
+
+  constructor(name: string, maxHealty: number, imagePath: string) {
+    this.name = name
+    this.maxHealty = maxHealty
+    this.currentHealty = maxHealty
+  }
 }
 
-type UserData = {
-  name: string
-  // boards: Map<string, Board>;
-  // active_board: string;
-  // fav_tasks: [string]; //column?
-  board: [CollectionData]
+const initialState = {
+  oppPlayer: new Player("Fiend", 35, boy2),
+  thisPlayer: new Player("Martyr", 27, boy1),
 }
 
-type CollectionData = [TaskData]
-
-type TaskData = {
-  name: string
-  color: string
-  content: string
-  // date: Date;
-  // tags:
-  // histoty
-}
-
-function Task() {
-  return (
-    <>
-      <li className="task">
-        <button>'count is count'</button>
-      </li>
-    </>
-  )
-}
+export const playersSlice = createSlice({
+  name: "players",
+  initialState,
+  reducers: {
+    doDamage: (state, action: PayloadAction<number>) => {
+      state.oppPlayer.currentHealty -= action.payload
+    },
+    takeDamage: (state, action: PayloadAction<number>) => {
+      state.thisPlayer.currentHealty -= action.payload
+    },
+  },
+})
+export const { doDamage, takeDamage } = playersSlice.actions
+export const playersReducer = playersSlice.reducer
+export const selectOppPlayer = (state: RootState) => state.players.oppPlayer
+export const selectThisPlayer = (state: RootState) => state.players.thisPlayer
 
 function ActionMenu({ text }: { text: string }) {
+  const oppPlayer = useAppSelector(selectOppPlayer)
+  const thisPlayer = useAppSelector(selectThisPlayer)
+  const dispatch = useAppDispatch()
   const [active, setActive] = useState(true)
   function action() {
     setActive(!active)
@@ -57,9 +66,9 @@ function ActionMenu({ text }: { text: string }) {
           </div>
         ) : (
           <div className="ActionMenu-Button">
-            <button> FIST </button>
-            <button> GUN </button>
-            <button> SWORD </button>
+            <button onClick={() => dispatch(doDamage(3))}> FIST </button>
+            <button onClick={() => dispatch(doDamage(3))}> FIST </button>
+            <button onClick={() => dispatch(doDamage(5))}> GUN </button>
             <button onClick={action}> BACK </button>
           </div>
         )}
@@ -67,30 +76,27 @@ function ActionMenu({ text }: { text: string }) {
     </>
   )
 }
-function HealBar({
-  name,
-  healty,
-  maxHealty,
-}: {
-  name: string
-  healty: string
-  maxHealty: string
-}) {
+function PlayerComponent({ isOpp = true }) {
+  const player = useAppSelector(isOpp ? selectOppPlayer : selectThisPlayer)
   return (
     <>
-      <div className="Healbar">
-        <p>{name} Lv7 </p>
-        <div className="FullHealty">
-          <div
-            className="CurrentHealty"
-            style={{
-              width:
-                ((100 / parseInt(maxHealty)) * parseInt(healty)).toString() +
-                "%",
-            }}
-          ></div>
+      <div className="Player">
+        <div className="Healbar">
+          <p>{player.name} Lv7 </p>
+          <div className="FullHealty">
+            <div
+              className="CurrentHealty"
+              style={{
+                width:
+                  ((100 / player.maxHealty) * player.currentHealty).toString() +
+                  "%",
+              }}
+            ></div>
+          </div>
+          <p>{player.currentHealty + "/" + player.maxHealty}</p>
         </div>
-        <p>{healty + "/" + maxHealty}</p>
+        <div className="Playerfield"> </div>
+        <img src={player.imagePath} className="App-logo Avatar" alt="logo" />
       </div>
     </>
   )
@@ -98,22 +104,16 @@ function HealBar({
 
 function App() {
   return (
-    <div className="App">
-      <div className="App-header">
-        <div className="Player">
-          <HealBar name="Fiend" healty="12" maxHealty="35" />
-          <div className="Playerfield"> </div>
-          <img src={boy2} className="App-logo Avatar" alt="logo" />
+    <Provider store={store}>
+      <div className="App">
+        <div className="App-header">
+          <PlayerComponent />
+          <div className="Space"> </div>
+          <PlayerComponent isOpp={false} />
+          <ActionMenu text="What will Martyr do?" />
         </div>
-        <div className="Space"> </div>
-        <div className="Player">
-          <div className="Playerfield"> </div>
-          <img src={boy1} className="App-logo Avatar" alt="logo" />
-          <HealBar name="Martyr" healty="23" maxHealty="27" />
-        </div>
-        <ActionMenu text="What will Martyr do?" />
       </div>
-    </div>
+    </Provider>
   )
 }
 
