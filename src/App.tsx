@@ -34,6 +34,7 @@ export const playersSlice = createSlice({
   initialState,
   reducers: {
     doDamage: (state, action: PayloadAction<number>) => {
+      alert("ffffff")
       state.oppPlayer.currentHealty -= action.payload
     },
     takeDamage: (state, action: PayloadAction<number>) => {
