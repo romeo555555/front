@@ -77,29 +77,67 @@ function ActionMenu({ text }: { text: string }) {
     </>
   )
 }
-function PlayerComponent({ isOpp = true }) {
-  const player = useAppSelector(isOpp ? selectOppPlayer : selectThisPlayer)
+function PlayerField({ path }: { path: string }) {
+  return (
+    <>
+      <div className="Playerfield"> </div>
+      <img src={path} className="App-logo Avatar" alt="logo" />
+    </>
+  )
+}
+function PlayerHealBar({
+  name,
+  currentHealty,
+  maxHealty,
+}: {
+  name: string
+  currentHealty: number
+  maxHealty: number
+}) {
+  return (
+    <div className="Healbar">
+      <p>{name} Lv7 </p>
+      <div className="FullHealty">
+        <div
+          className="CurrentHealty"
+          style={{
+            width: ((100 / maxHealty) * currentHealty).toString() + "%",
+          }}
+        ></div>
+      </div>
+      <p>{currentHealty + "/" + maxHealty}</p>
+    </div>
+  )
+}
+function OppPlayerComponent() {
+  const player = useAppSelector(selectOppPlayer)
+  return (
+    <>
+      <div className="Player">
+        <PlayerHealBar
+          name={player.name}
+          maxHealty={player.maxHealty}
+          currentHealty={player.currentHealty}
+        />
+        <PlayerField path={player.imagePath} />
+      </div>
+    </>
+  )
+}
+function ThisPlayerComponent() {
+  const player = useAppSelector(selectThisPlayer)
   const currentHealty = useAppSelector(
     (state: RootState) => state.players.oppPlayer.currentHealty,
   )
   return (
     <>
       <div className="Player">
-        <div className="Healbar">
-          <p>{player.name} Lv7 </p>
-          <div className="FullHealty">
-            <div
-              className="CurrentHealty"
-              style={{
-                width:
-                  ((100 / player.maxHealty) * currentHealty).toString() + "%",
-              }}
-            ></div>
-          </div>
-          <p>{currentHealty + "/" + player.maxHealty}</p>
-        </div>
-        <div className="Playerfield"> </div>
-        <img src={player.imagePath} className="App-logo Avatar" alt="logo" />
+        <PlayerField path={player.imagePath} />
+        <PlayerHealBar
+          name={player.name}
+          maxHealty={player.maxHealty}
+          currentHealty={player.currentHealty}
+        />
       </div>
     </>
   )
@@ -110,9 +148,9 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <div className="App-header">
-          <PlayerComponent />
+          <OppPlayerComponent />
           <div className="Space"> </div>
-          <PlayerComponent isOpp={false} />
+          <ThisPlayerComponent />
           <ActionMenu text="What will Martyr do?" />
         </div>
       </div>
