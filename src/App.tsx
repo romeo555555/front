@@ -116,9 +116,7 @@ function PlayerField({ path }: { path: string }) {
           color: active ? "white" : "red",
           // treansitionTimingFunction:
         }}
-        onClick={() => {
-          action()
-        }}
+        onClick={action}
       />
     </>
   )
