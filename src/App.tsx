@@ -42,14 +42,17 @@ export const playersSlice = createSlice({
       state.oppPlayer.currentHealty -= action.payload
     },
     takeDamage: (state, action: PayloadAction<number>) => {
-      if (state.oppPlayer.currentHealty < action.payload) {
-        state.oppPlayer.currentHealty = 0
+      if (state.thisPlayer.currentHealty < action.payload) {
+        state.thisPlayer.currentHealty = 0
       }
       state.thisPlayer.currentHealty -= action.payload
     },
+    alerting: (state, action: PayloadAction<string>) => {
+      alert(action.payload)
+    },
   },
 })
-export const { doDamage, takeDamage } = playersSlice.actions
+export const { doDamage, takeDamage, alerting } = playersSlice.actions
 export const playersReducer = playersSlice.reducer
 export const selectOppPlayer = (state: RootState) => state.players.oppPlayer
 export const selectThisPlayer = (state: RootState) => state.players.thisPlayer
@@ -69,9 +72,19 @@ function ActionMenu({ text }: { text: string }) {
         {active ? (
           <div className="ActionMenu-Button">
             <button onClick={action}> FIGHT </button>
-            <button> BOYS </button>
-            <button> BAG </button>
-            <button> RUN </button>
+            <button onClick={() => dispatch(alerting("Other boys"))}>
+              BOYS
+            </button>
+            <button
+              onClick={() =>
+                dispatch(alerting("For this function work in progres"))
+              }
+            >
+              BAG
+            </button>
+            <button onClick={() => dispatch(alerting("You truy run"))}>
+              RUN
+            </button>
           </div>
         ) : (
           <div className="ActionMenu-Button">
@@ -86,10 +99,27 @@ function ActionMenu({ text }: { text: string }) {
   )
 }
 function PlayerField({ path }: { path: string }) {
+  const [active, setActive] = useState(true)
+  function action() {
+    setActive(!active)
+  }
   return (
     <>
       <div className="Playerfield"> </div>
-      <img src={path} className="App-logo Avatar" alt="logo" />
+      <img
+        src={path}
+        className="App-logo Avatar"
+        alt="logo"
+        style={{
+          transitionProperty: "color",
+          transitionDuration: "30s",
+          color: active ? "white" : "red",
+          // treansitionTimingFunction:
+        }}
+        onClick={() => {
+          action()
+        }}
+      />
     </>
   )
 }
