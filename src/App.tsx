@@ -10,6 +10,22 @@ import { Provider } from "react-redux"
 import { RootState, store } from "./app/store"
 import { useAppDispatch, useAppSelector } from "./app/hooks"
 
+interface Player {
+  name: string
+  maxHealty: number
+  currentHealty: number
+  imagePath: string
+}
+function new_player(name: string, maxHealty: number, imagePath: string) {
+  let currentHealty = maxHealty
+  return {
+    name,
+    maxHealty,
+    currentHealty,
+    imagePath,
+  }
+}
+
 class Player {
   name: string = "Empety"
   maxHealty: number = 0
@@ -25,8 +41,8 @@ class Player {
 }
 
 const initialState = {
-  oppPlayer: new Player("Fiend", 35, boy2),
-  thisPlayer: new Player("Martyr", 27, boy1),
+  oppPlayer: new_player("Fiend", 35, boy2),
+  thisPlayer: new_player("Martyr", 27, boy1),
 }
 
 export const playersSlice = createSlice({
@@ -34,7 +50,6 @@ export const playersSlice = createSlice({
   initialState,
   reducers: {
     doDamage: (state, action: PayloadAction<number>) => {
-      alert("ffffff")
       state.oppPlayer.currentHealty -= action.payload
     },
     takeDamage: (state, action: PayloadAction<number>) => {
@@ -69,8 +84,8 @@ function ActionMenu({ text }: { text: string }) {
         ) : (
           <div className="ActionMenu-Button">
             <button onClick={() => dispatch(doDamage(10))}> FIST </button>
-            <button onClick={() => dispatch(doDamage(3))}> FIST </button>
-            <button onClick={() => dispatch(doDamage(5))}> GUN </button>
+            <button onClick={() => dispatch(doDamage(3))}> GUN </button>
+            <button onClick={() => dispatch(takeDamage(5))}> SELFHARM </button>
             <button onClick={action}> BACK </button>
           </div>
         )}
