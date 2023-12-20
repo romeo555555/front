@@ -79,7 +79,9 @@ function ActionMenu({ text }: { text: string }) {
 }
 function PlayerComponent({ isOpp = true }) {
   const player = useAppSelector(isOpp ? selectOppPlayer : selectThisPlayer)
-  const currentHealty = useAppSelector((state: RootState) => state.players.oppPlayer.currentHealty)
+  const currentHealty = useAppSelector(
+    (state: RootState) => state.players.oppPlayer.currentHealty,
+  )
   return (
     <>
       <div className="Player">
