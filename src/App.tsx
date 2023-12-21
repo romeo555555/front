@@ -122,7 +122,7 @@ function PlayerHealBar({
     </div>
   )
 }
-function OppPlayerComponent({ style = { backgroundColor: "red" } }) {
+function OppPlayerComponent({ style = { backgroundColor: "red", height: "100vmin" } }) {
   const player = useAppSelector(selectOppPlayer)
   return (
     <>
