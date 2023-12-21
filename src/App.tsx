@@ -98,29 +98,6 @@ function ActionMenu({ text }: { text: string }) {
     </>
   )
 }
-function PlayerField({ path }: { path: string }) {
-  const [active, setActive] = useState(true)
-  function action() {
-    setActive(!active)
-  }
-  return (
-    <>
-      <div className="Playerfield"> </div>
-      <img
-        src={path}
-        className="App-logo Avatar"
-        alt="logo"
-        style={{
-          transitionProperty: "color",
-          transitionDuration: "30s",
-          color: active ? "white" : "red",
-          // treansitionTimingFunction:
-        }}
-        onClick={action}
-      />
-    </>
-  )
-}
 function PlayerHealBar({
   name,
   currentHealty,
@@ -145,7 +122,7 @@ function PlayerHealBar({
     </div>
   )
 }
-function OppPlayerComponent() {
+function OppPlayerComponent({ style = { backgroundColor: "red" } }) {
   const player = useAppSelector(selectOppPlayer)
   return (
     <>
@@ -155,7 +132,19 @@ function OppPlayerComponent() {
           maxHealty={player.maxHealty}
           currentHealty={player.currentHealty}
         />
-        <PlayerField path={player.imagePath} />
+        <div className="Playerfield"> </div>
+        <img
+          src={player.imagePath}
+          className="App-logo Avatar"
+          alt="logo"
+          style={style}
+        //   transitionProperty: "color",
+        //   transitionDuration: "30s",
+        //   color: active ? "white" : "red",
+        //   // treansitionTimingFunction:
+        // }}
+        // onClick={action}
+        />
       </div>
     </>
   )
@@ -168,7 +157,19 @@ function ThisPlayerComponent() {
   return (
     <>
       <div className="Player">
-        <PlayerField path={player.imagePath} />
+        <div className="Playerfield"> </div>
+        <img
+          src={player.imagePath}
+          className="App-logo Avatar"
+          alt="logo"
+        // style={{
+        //   transitionProperty: "color",
+        //   transitionDuration: "30s",
+        //   color: active ? "white" : "red",
+        //   // treansitionTimingFunction:
+        // }}
+        // onClick={action}
+        />
         <PlayerHealBar
           name={player.name}
           maxHealty={player.maxHealty}
