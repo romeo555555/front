@@ -77,12 +77,12 @@ function ActionMenu({ text }: { text: string }) {
             </button>
             <button
               onClick={() =>
-                dispatch(alerting("For this function work in progres"))
+                dispatch(alerting("This function work in progres"))
               }
             >
               BAG
             </button>
-            <button onClick={() => dispatch(alerting("You truy run"))}>
+            <button onClick={() => dispatch(alerting("You try run"))}>
               RUN
             </button>
           </div>
@@ -137,7 +137,7 @@ function OppPlayerComponent({ style = { color: "red" } }) {
           src={player.imagePath}
           className="App-logo Avatar"
           alt="logo"
-          style={style}
+        // style={style}
         //   transitionProperty: "color",
         //   transitionDuration: "30s",
         //   color: active ? "white" : "red",
